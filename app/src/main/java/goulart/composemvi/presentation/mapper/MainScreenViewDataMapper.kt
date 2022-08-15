@@ -8,7 +8,8 @@ object MainScreenViewDataMapper {
     fun buildScreen(todos: List<ToDo>): List<MainScreenItem> {
         val viewData = mutableListOf<MainScreenItem>()
         viewData.addAll(todos.map { todo ->
-            MainScreenItem.MainScreenTodoItem(
+            MainScreenItem.MainScreenTaskItem(
+                todo.id,
                 todo.isChecked,
                 todo.title,
                 todo.body

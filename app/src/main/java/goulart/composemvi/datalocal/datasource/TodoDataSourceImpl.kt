@@ -13,7 +13,13 @@ class TodoDataSourceImpl(
 
     override fun insert(todo: ToDo) = flow {
         emit(
-            dataBase.todoDAO().insertAll(TodoMapper.fromDomain(todo))
+            dataBase.todoDAO().insert(TodoMapper.fromDomain(todo))
+        )
+    }
+
+    override fun update(todo: ToDo) = flow {
+        emit(
+            dataBase.todoDAO().update(TodoMapper.fromDomain(todo))
         )
     }
 
@@ -24,6 +30,12 @@ class TodoDataSourceImpl(
     override fun delete(todo: ToDo) = flow {
         emit(
             dataBase.todoDAO().delete(TodoMapper.fromDomain(todo))
+        )
+    }
+
+    override fun delete() = flow {
+        emit(
+            dataBase.todoDAO().delete()
         )
     }
 }

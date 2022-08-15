@@ -7,8 +7,12 @@ interface TodoRepository {
 
     fun insert(todo: ToDo): Flow<Unit>
 
-    fun getTodos(): Flow<List<ToDo>>
+    fun update(todo: ToDo): Flow<Unit>
+
+    fun getTasks(): Flow<List<ToDo>>
 
     fun delete(todo: ToDo): Flow<Unit>
+
+    fun delete(): Flow<Unit>
 
 }

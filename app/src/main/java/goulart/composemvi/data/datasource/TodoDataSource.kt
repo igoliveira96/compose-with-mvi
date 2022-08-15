@@ -7,8 +7,12 @@ interface TodoDataSource {
 
     fun insert(todo: ToDo): Flow<Unit>
 
+    fun update(todo: ToDo): Flow<Unit>
+
     fun getAll(): Flow<List<ToDo>>
 
     fun delete(todo: ToDo): Flow<Unit>
+
+    fun delete(): Flow<Unit>
 
 }

@@ -1,14 +1,14 @@
-package goulart.composemvi.domain.use_case
+package goulart.composemvi.domain.usecase
 
 import goulart.composemvi.domain.core.UseCase
 import goulart.composemvi.domain.entities.ToDo
 import goulart.composemvi.domain.repository.TodoRepository
 import kotlinx.coroutines.CoroutineScope
 
-class InsertTodoUseCase(
-    private val scope: CoroutineScope,
+class InsertTaskUseCase(
+    scope: CoroutineScope,
     private val repository: TodoRepository
-) : UseCase<Unit, InsertTodoUseCase.Params>(scope) {
+) : UseCase<Unit, InsertTaskUseCase.Params>(scope) {
 
     override fun run(params: Params?) = when(params) {
         null -> throw NullPointerException()

@@ -2,12 +2,13 @@ package goulart.composemvi.presentation.features.main
 
 import goulart.composemvi.base.UiEvent
 import goulart.composemvi.base.UiState
+import goulart.composemvi.domain.entities.ToDo
 
 sealed class MainScreenUiEvent : UiEvent {
     data class ShowData(val items: List<MainScreenItem>) : MainScreenUiEvent()
     data class OnChangeDialogState(val show: Boolean) : MainScreenUiEvent()
-    data class AddNewItem(val title: String, val body: String) : MainScreenUiEvent()
     data class OnItemCheckedChanged(val index: Int, val isChecked: Boolean) : MainScreenUiEvent()
+    data class OnItemRemoved(val index: Int) : MainScreenUiEvent()
     object DismissDialog : MainScreenUiEvent()
 }
 
@@ -34,10 +35,24 @@ sealed class MainScreenItem {
 
     object MainScreenAddButtonItem : MainScreenItem()
 
-    data class MainScreenTodoItem(
+    data class MainScreenTaskItem(
+        val id: Long,
         val isChecked: Boolean,
         val title: String,
         val body: String,
-    ) : MainScreenItem()
+    ) : MainScreenItem() {
+
+        companion object {
+
+            val CLEAN_THE_ROOM = MainScreenTaskItem(
+                id = 0,
+                isChecked = false,
+                title = "Clean the room",
+                body = "Clean the room on Thursday"
+            )
+
+        }
+
+    }
 
 }

@@ -3,7 +3,8 @@ package goulart.composemvi.presentation.features.main
 import goulart.composemvi.base.BaseViewModel
 import goulart.composemvi.base.Reducer
 import goulart.composemvi.base.TimeCapsule
-import goulart.composemvi.domain.use_case.GetTodosUseCase
+import goulart.composemvi.domain.entities.ToDo
+import goulart.composemvi.domain.usecase.*
 import goulart.composemvi.presentation.base.useCase
 import goulart.composemvi.presentation.mapper.MainScreenViewDataMapper
 import kotlinx.coroutines.flow.StateFlow
@@ -12,16 +13,21 @@ class MainViewModel : BaseViewModel<MainScreenState, MainScreenUiEvent>() {
 
     private val reducer = MainReducer(MainScreenState.initial())
 
-    private val getTodos: GetTodosUseCase by useCase()
+    private val getTasks: GetTasksUseCase by useCase()
+    private val insertTask: InsertTaskUseCase by useCase()
+    private val updateTask: UpdateTaskUseCase by useCase()
+    private val deleteTask: DeleteTaskUseCase by useCase()
+    private val deleteAll: DeleteAllTasksUseCase by useCase()
 
     override val state: StateFlow<MainScreenState>
         get() = reducer.state
 
-    val timeMachine: TimeCapsule<MainScreenState>
-        get() = reducer.timeCapsule
-
     init {
-        getTodos(
+        fetchTasks()
+    }
+
+    private fun fetchTasks() {
+        getTasks(
             onSuccess = { todos ->
                 sendEvent(
                     MainScreenUiEvent.ShowData(
@@ -41,11 +47,51 @@ class MainViewModel : BaseViewModel<MainScreenState, MainScreenUiEvent>() {
     }
 
     fun addNewItem(title: String, body: String) {
-        sendEvent(MainScreenUiEvent.AddNewItem(title, body))
+        sendEvent(MainScreenUiEvent.OnChangeDialogState(false))
+        insertTask(
+            InsertTaskUseCase.Params(title, body),
+            onSuccess = {
+                fetchTasks()
+            }
+        )
     }
 
-    fun onItemCheckedChanged(index: Int, isChecked: Boolean) {
-        sendEvent(MainScreenUiEvent.OnItemCheckedChanged(index, isChecked))
+    fun onItemCheckedChanged(index: Int, task: MainScreenItem.MainScreenTaskItem) {
+        updateTask(
+            UpdateTaskUseCase.Params(ToDo(
+                id = task.id,
+                title = task.title,
+                body = task.body,
+                isChecked = !task.isChecked
+            )),
+            onSuccess = {
+                sendEvent(MainScreenUiEvent.OnItemCheckedChanged(index, !task.isChecked))
+            }
+        )
+    }
+
+    fun remove(index: Int, task: MainScreenItem.MainScreenTaskItem) {
+        deleteTask(
+            params = DeleteTaskUseCase.Params(ToDo(
+                id = task.id,
+                title = task.title,
+                body = task.body,
+                isChecked = !task.isChecked
+            )),
+            onSuccess = {
+                sendEvent(MainScreenUiEvent.OnItemRemoved(index))
+            }
+        )
+    }
+
+    fun removeAll() {
+        deleteAll(
+            onSuccess = {
+                sendEvent(
+                    MainScreenUiEvent.ShowData(MainScreenViewDataMapper.buildScreen(emptyList()))
+                )
+            }
+        )
     }
 
     private class MainReducer(initial: MainScreenState) : Reducer<MainScreenState, MainScreenUiEvent>(initial) {
@@ -60,20 +106,14 @@ class MainViewModel : BaseViewModel<MainScreenState, MainScreenUiEvent>() {
                 is MainScreenUiEvent.DismissDialog -> {
                     setState(oldState.copy(isShowAddDialog = false))
                 }
-                is MainScreenUiEvent.AddNewItem -> {
-                    val newList = oldState.data.toMutableList()
-                    newList.add(
-                        index = oldState.data.size - 1,
-                        element = MainScreenItem.MainScreenTodoItem(false, event.title, event.body),
-                    )
-                    setState(oldState.copy(
-                        data = newList,
-                        isShowAddDialog = false
-                    ))
-                }
                 is MainScreenUiEvent.OnItemCheckedChanged -> {
                     val newList = oldState.data.toMutableList()
-                    newList[event.index] = (newList[event.index] as MainScreenItem.MainScreenTodoItem).copy(isChecked = event.isChecked)
+                    newList[event.index] = (newList[event.index] as MainScreenItem.MainScreenTaskItem).copy(isChecked = event.isChecked)
+                    setState(oldState.copy(data = newList))
+                }
+                is MainScreenUiEvent.OnItemRemoved -> {
+                    val newList = oldState.data.toMutableList()
+                    newList.removeAt(event.index)
                     setState(oldState.copy(data = newList))
                 }
             }

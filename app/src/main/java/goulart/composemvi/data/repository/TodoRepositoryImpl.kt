@@ -10,7 +10,11 @@ class TodoRepositoryImpl(
 
     override fun insert(todo: ToDo) = dataSource.insert(todo)
 
-    override fun getTodos() = dataSource.getAll()
+    override fun update(todo: ToDo) = dataSource.update(todo)
+
+    override fun getTasks() = dataSource.getAll()
 
     override fun delete(todo: ToDo) = dataSource.delete(todo)
+
+    override fun delete() = dataSource.delete()
 }
