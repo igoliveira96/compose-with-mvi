@@ -2,7 +2,6 @@ package goulart.composemvi.presentation.features.main
 
 import goulart.composemvi.base.UiEvent
 import goulart.composemvi.base.UiState
-import goulart.composemvi.domain.entities.ToDo
 
 sealed class MainScreenUiEvent : UiEvent {
     data class ShowData(val items: List<MainScreenItem>) : MainScreenUiEvent()
