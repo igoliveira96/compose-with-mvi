@@ -1,6 +1,5 @@
-package goulart.composemvi.base
+package goulart.composemvi.presentation.base
 
-import goulart.composemvi.BuildConfig
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 

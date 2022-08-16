@@ -1,11 +1,11 @@
 package goulart.composemvi.di
 
-import goulart.composemvi.data.repository.TodoRepositoryImpl
-import goulart.composemvi.domain.repository.TodoRepository
+import goulart.composemvi.data.repository.TaskRepositoryImpl
+import goulart.composemvi.domain.repository.TaskRepository
 import org.koin.dsl.module
 
 val dataModule = module {
 
-    single<TodoRepository> { TodoRepositoryImpl(get()) }
+    single<TaskRepository> { TaskRepositoryImpl(get()) }
 
 }

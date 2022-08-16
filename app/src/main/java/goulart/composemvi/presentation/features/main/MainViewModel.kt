@@ -1,9 +1,8 @@
 package goulart.composemvi.presentation.features.main
 
-import goulart.composemvi.base.BaseViewModel
-import goulart.composemvi.base.Reducer
-import goulart.composemvi.base.TimeCapsule
-import goulart.composemvi.domain.entities.ToDo
+import goulart.composemvi.presentation.base.BaseViewModel
+import goulart.composemvi.presentation.base.Reducer
+import goulart.composemvi.domain.entities.Task
 import goulart.composemvi.domain.usecase.*
 import goulart.composemvi.presentation.base.useCase
 import goulart.composemvi.presentation.mapper.MainScreenViewDataMapper
@@ -28,10 +27,10 @@ class MainViewModel : BaseViewModel<MainScreenState, MainScreenUiEvent>() {
 
     private fun fetchTasks() {
         getTasks(
-            onSuccess = { todos ->
+            onSuccess = { tasks ->
                 sendEvent(
                     MainScreenUiEvent.ShowData(
-                        MainScreenViewDataMapper.buildScreen(todos)
+                        MainScreenViewDataMapper.buildScreen(tasks)
                     )
                 )
             }
@@ -58,7 +57,7 @@ class MainViewModel : BaseViewModel<MainScreenState, MainScreenUiEvent>() {
 
     fun onItemCheckedChanged(index: Int, task: MainScreenItem.MainScreenTaskItem) {
         updateTask(
-            UpdateTaskUseCase.Params(ToDo(
+            UpdateTaskUseCase.Params(Task(
                 id = task.id,
                 title = task.title,
                 body = task.body,
@@ -72,7 +71,7 @@ class MainViewModel : BaseViewModel<MainScreenState, MainScreenUiEvent>() {
 
     fun remove(index: Int, task: MainScreenItem.MainScreenTaskItem) {
         deleteTask(
-            params = DeleteTaskUseCase.Params(ToDo(
+            params = DeleteTaskUseCase.Params(Task(
                 id = task.id,
                 title = task.title,
                 body = task.body,

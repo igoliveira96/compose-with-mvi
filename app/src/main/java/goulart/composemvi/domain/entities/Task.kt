@@ -1,6 +1,6 @@
 package goulart.composemvi.domain.entities
 
-data class ToDo (
+data class Task (
     val id: Long,
     val isChecked: Boolean,
     val title: String,
@@ -8,7 +8,7 @@ data class ToDo (
 ) {
 
     companion object {
-        val EMPTY = ToDo(
+        val EMPTY = Task(
             id = 0,
             isChecked = false,
             title = "",

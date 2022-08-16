@@ -1,13 +1,13 @@
 package goulart.composemvi.domain.usecase
 
 import goulart.composemvi.domain.core.UseCase
-import goulart.composemvi.domain.entities.ToDo
-import goulart.composemvi.domain.repository.TodoRepository
+import goulart.composemvi.domain.entities.Task
+import goulart.composemvi.domain.repository.TaskRepository
 import kotlinx.coroutines.CoroutineScope
 
 class DeleteTaskUseCase(
     scope: CoroutineScope,
-    private val repository: TodoRepository
+    private val repository: TaskRepository
 ) : UseCase<Unit, DeleteTaskUseCase.Params>(scope) {
 
     override fun run(params: Params?) = when(params) {
@@ -16,7 +16,7 @@ class DeleteTaskUseCase(
     }
 
     data class Params(
-        val task: ToDo
+        val task: Task
     )
 
 }

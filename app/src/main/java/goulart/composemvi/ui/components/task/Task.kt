@@ -1,4 +1,4 @@
-package goulart.composemvi.ui.components.todo
+package goulart.composemvi.ui.components.task
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Checkbox
@@ -17,7 +17,7 @@ import goulart.composemvi.ui.components.text.Body
 import goulart.composemvi.ui.components.text.Title
 
 @Composable
-fun ToDoItem(
+fun Task(
     task: MainScreenTaskItem,
     index: Int,
     onItemCheckedChanged: (Int, MainScreenTaskItem) -> Unit,
@@ -58,8 +58,8 @@ fun ToDoItem(
 
 @Preview
 @Composable
-fun ToDoItemPreview() {
-    ToDoItem(
+fun TaskPreview() {
+    Task(
         task = MainScreenTaskItem.CLEAN_THE_ROOM,
         index = 0,
         onItemCheckedChanged = { _, _ -> },

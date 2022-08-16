@@ -1,4 +1,4 @@
-package goulart.composemvi.base
+package goulart.composemvi.presentation.base
 
 import androidx.lifecycle.ViewModel
 import kotlinx.coroutines.flow.Flow

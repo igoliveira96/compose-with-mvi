@@ -15,7 +15,7 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import goulart.composemvi.ui.components.todo.ToDoItem
+import goulart.composemvi.ui.components.task.Task
 import org.koin.androidx.compose.getViewModel
 
 @Composable
@@ -26,7 +26,7 @@ fun MainScreen(viewModel: MainViewModel = getViewModel()) {
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { Text(text = "To Do") },
+                title = { Text(text = "My tasks") },
                 elevation = 4.dp,
                 actions = {
                     IconButton(onClick = { viewModel.removeAll() }) {
@@ -73,7 +73,7 @@ private fun MainScreenContent(
             itemsIndexed(data) { index, item ->
                 when (item) {
                     is MainScreenItem.MainScreenTaskItem -> {
-                        ToDoItem(
+                        Task(
                             task = item,
                             index,
                             onItemCheckedChanged,

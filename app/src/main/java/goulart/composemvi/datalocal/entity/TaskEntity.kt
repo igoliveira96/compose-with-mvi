@@ -5,7 +5,7 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 @Entity(tableName = "tasks")
-data class Task(
+data class TaskEntity(
     @PrimaryKey(autoGenerate = true) val id: Long,
     @ColumnInfo(name = "title") val title: String,
     @ColumnInfo(name = "body") val body: String,
@@ -15,7 +15,7 @@ data class Task(
         if (this === other) return true
         if (javaClass != other?.javaClass) return false
 
-        other as Task
+        other as TaskEntity
 
         if (id != other.id) return false
         if (title != other.title) return false
