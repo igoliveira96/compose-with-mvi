@@ -5,7 +5,7 @@ import goulart.composemvi.presentation.base.Reducer
 import goulart.composemvi.domain.entities.Task
 import goulart.composemvi.domain.usecase.*
 import goulart.composemvi.presentation.base.useCase
-import goulart.composemvi.presentation.mapper.MainScreenViewDataMapper
+import goulart.composemvi.presentation.mapper.TaskMapper
 import kotlinx.coroutines.flow.StateFlow
 
 class MainViewModel : BaseViewModel<MainScreenState, MainScreenUiEvent>() {
@@ -30,7 +30,7 @@ class MainViewModel : BaseViewModel<MainScreenState, MainScreenUiEvent>() {
             onSuccess = { tasks ->
                 sendEvent(
                     MainScreenUiEvent.ShowData(
-                        MainScreenViewDataMapper.buildScreen(tasks)
+                        TaskMapper.buildScreen(tasks)
                     )
                 )
             }
@@ -57,12 +57,7 @@ class MainViewModel : BaseViewModel<MainScreenState, MainScreenUiEvent>() {
 
     fun onItemCheckedChanged(index: Int, task: MainScreenItem.MainScreenTaskItem) {
         updateTask(
-            UpdateTaskUseCase.Params(Task(
-                id = task.id,
-                title = task.title,
-                body = task.body,
-                isChecked = !task.isChecked
-            )),
+            UpdateTaskUseCase.Params(TaskMapper.toDomain(task)),
             onSuccess = {
                 sendEvent(MainScreenUiEvent.OnItemCheckedChanged(index, !task.isChecked))
             }
@@ -87,7 +82,7 @@ class MainViewModel : BaseViewModel<MainScreenState, MainScreenUiEvent>() {
         deleteAll(
             onSuccess = {
                 sendEvent(
-                    MainScreenUiEvent.ShowData(MainScreenViewDataMapper.buildScreen(emptyList()))
+                    MainScreenUiEvent.ShowData(TaskMapper.buildScreen(emptyList()))
                 )
             }
         )
