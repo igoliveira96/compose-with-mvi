@@ -1,4 +1,4 @@
-package goulart.composemvi.presentation.features.main
+package goulart.composemvi.presentation.main
 
 import goulart.composemvi.presentation.base.UiEvent
 import goulart.composemvi.presentation.base.UiState

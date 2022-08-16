@@ -1,7 +1,7 @@
 package goulart.composemvi.presentation.mapper
 
 import goulart.composemvi.domain.entities.Task
-import goulart.composemvi.presentation.features.main.MainScreenItem
+import goulart.composemvi.presentation.main.MainScreenItem
 
 object MainScreenViewDataMapper {
 

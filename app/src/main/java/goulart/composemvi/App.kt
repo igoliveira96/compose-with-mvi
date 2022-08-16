@@ -11,7 +11,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import goulart.composemvi.navigation.Route
-import goulart.composemvi.presentation.features.main.MainScreen
+import goulart.composemvi.presentation.main.MainScreen
 import goulart.composemvi.ui.theme.ComposeMVITheme
 
 @Composable

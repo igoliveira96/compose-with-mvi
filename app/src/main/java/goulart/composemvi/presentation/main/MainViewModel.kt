@@ -1,4 +1,4 @@
-package goulart.composemvi.presentation.features.main
+package goulart.composemvi.presentation.main
 
 import goulart.composemvi.presentation.base.BaseViewModel
 import goulart.composemvi.presentation.base.Reducer
