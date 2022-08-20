@@ -1,0 +1,38 @@
+android {
+    compileSdk androidCompileSdkVersion
+
+    defaultConfig {
+        minSdk androidMinSdkVersion
+        targetSdk androidTargetSdkVersion
+        versionCode androidVersionCode
+        versionName androidVersionName
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        vectorDrawables {
+            useSupportLibrary true
+        }
+    }
+
+    buildTypes {
+        buildTypes {
+            debug {
+                buildConfigField "Boolean", "DEBUG_MODE", "true"
+            }
+            release {
+                buildConfigField "Boolean", "DEBUG_MODE", "false"
+            }
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+    packagingOptions {
+        resources {
+            excludes += '/META-INF/{AL2.0,LGPL2.1}'
+        }
+    }
+}

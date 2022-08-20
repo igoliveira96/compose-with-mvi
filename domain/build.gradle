@@ -1,0 +1,7 @@
+apply plugin: 'kotlin'
+
+dependencies {
+
+    domainDependencies.each { add(it.configuration, it.dependency, it.options) }
+
+}

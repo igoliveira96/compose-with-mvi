@@ -1,0 +1,6 @@
+apply plugin: 'kotlin'
+
+dependencies {
+    api project(':domain')
+    dataDependencies.each { add(it.configuration, it.dependency, it.options) }
+}

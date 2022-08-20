@@ -1,0 +1,14 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+
+apply from: "$rootProject.projectDir/android-common-compose.gradle"
+
+dependencies {
+
+    api project(':base_feature')
+    api project(':feature_main')
+    intentDependencies.each { add(it.configuration, it.dependency, it.options) }
+    androidTestImplementation "androidx.compose.ui:ui-test-junit4:$composeVersion"
+    debugImplementation "androidx.compose.ui:ui-tooling:$composeVersion"
+
+}

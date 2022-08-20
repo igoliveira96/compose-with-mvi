@@ -1,0 +1,5 @@
+apply plugin: 'kotlin'
+
+dependencies {
+    appDependencies.each { add(it.configuration, it.dependency, it.options) }
+}

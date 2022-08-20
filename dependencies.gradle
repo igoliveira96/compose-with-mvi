@@ -1,0 +1,37 @@
+ext {
+    commonsDependencies = [
+            [configuration: "implementation", dependency: fileTree(dir: 'libs', include: ['*.jar', "*.aar"])],
+            [configuration: "implementation", dependency: "$coroutine"],
+            [configuration: "implementation", dependency: "$koinCore"],
+    ]
+
+    appDependencies = commonsDependencies + [
+            [configuration: "implementation", dependency: "$composeUI"],
+            [configuration: "implementation", dependency: "$composeMaterial"],
+            [configuration: "implementation", dependency: "$composeToolilngPreview"],
+            [configuration: "implementation", dependency: "$composeActivity"],
+            [configuration: "implementation", dependency: "$koinAndroid"],
+            [configuration: "implementation", dependency: "$koinCompose"],
+            [configuration: "implementation", dependency: "$viewModelRuntime"],
+    ]
+
+    intentDependencies = appDependencies + [
+            [configuration: "implementation", dependency: "$composeNavigation"],
+    ]
+
+    dataDependencies = commonsDependencies
+
+    dataLocalDependencies = dataDependencies + [
+            [configuration: "implementation", dependency: "$room"],
+    ]
+
+    domainDependencies = commonsDependencies + [
+
+    ]
+
+    diDependencies = commonsDependencies + [
+            [configuration: "implementation", dependency: "$koinAndroid"],
+            [configuration: "implementation", dependency: "$viewModel"],
+    ]
+
+}
