@@ -1,6 +1,5 @@
 # Task app with Jetpack Compose and MVI
 
-## Description
 Hello! How are you doing? I hope you are fine!
 
 This project is the implementation of a task application using the modern Android toolkit to create native UIs, known as Jetpack Compose, using clean architecture, MVI and principles SOLID.
