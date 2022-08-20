@@ -1,0 +1,15 @@
+ext {
+
+    // versions
+    junitVersion = '4.13.2'
+    androidJunitVersion = '1.1.3'
+    expressoVersion = '3.4.0'
+
+    junit = "junit:junit:$junitVersion"
+    androidJunit = "androidx.test.ext:junit:$androidJunitVersion"
+    expresso = "androidx.test.espresso:espresso-core:$expressoVersion"
+
+//    androidTestImplementation "androidx.compose.ui:ui-test-junit4:$composeVersion"
+//    debugImplementation "androidx.compose.ui:ui-tooling:$composeVersion"
+
+}

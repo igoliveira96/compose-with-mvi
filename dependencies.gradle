@@ -5,7 +5,7 @@ ext {
             [configuration: "implementation", dependency: "$koinCore"],
     ]
 
-    appDependencies = commonsDependencies + [
+    appDependencies = commonsDependencies + testAppDependencies + [
             [configuration: "implementation", dependency: "$composeUI"],
             [configuration: "implementation", dependency: "$composeMaterial"],
             [configuration: "implementation", dependency: "$composeToolilngPreview"],
@@ -15,21 +15,19 @@ ext {
             [configuration: "implementation", dependency: "$viewModelRuntime"],
     ]
 
-    intentDependencies = appDependencies + [
+    intentDependencies = appDependencies + testAppDependencies + [
             [configuration: "implementation", dependency: "$composeNavigation"],
     ]
 
-    dataDependencies = commonsDependencies
+    dataDependencies = commonsDependencies + testDataDependencies
 
     dataLocalDependencies = dataDependencies + [
             [configuration: "implementation", dependency: "$room"],
     ]
 
-    domainDependencies = commonsDependencies + [
+    domainDependencies = commonsDependencies + testDomainDependencies
 
-    ]
-
-    diDependencies = commonsDependencies + [
+    diDependencies = commonsDependencies + testAppDependencies + [
             [configuration: "implementation", dependency: "$koinAndroid"],
             [configuration: "implementation", dependency: "$viewModel"],
     ]

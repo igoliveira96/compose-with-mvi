@@ -1,0 +1,14 @@
+ext {
+    testCommonsDependencies = [
+            [configuration: "testImplementation", dependency: "$junit"],
+            [configuration: "testImplementation", dependency: "$androidJunit"],
+            [configuration: "testImplementation", dependency: "$expresso"],
+    ]
+
+    testAppDependencies = testCommonsDependencies
+
+    testDomainDependencies = testCommonsDependencies
+
+    testDataDependencies = testCommonsDependencies
+
+}

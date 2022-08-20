@@ -1,6 +1,8 @@
 buildscript {
     apply from: 'versions.gradle'
     apply from: 'libs.gradle'
+    apply from: 'test-libs.gradle'
+    apply from: 'test-dependencies.gradle'
     apply from: 'dependencies.gradle'
     dependencies {
     }
