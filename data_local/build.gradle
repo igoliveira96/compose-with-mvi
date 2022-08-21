@@ -6,6 +6,7 @@ apply from: "$rootProject.projectDir/android-common.gradle"
 
 dependencies {
     implementation project(':data')
+    implementation 'androidx.test:runner:1.4.0'
     dataLocalDependencies.each { add(it.configuration, it.dependency, it.option) }
     kapt("androidx.room:room-compiler:$roomVersion")
 }
