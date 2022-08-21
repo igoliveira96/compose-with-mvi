@@ -5,16 +5,19 @@ ext {
     androidJunitVersion = '1.1.3'
     expressoVersion = '3.4.0'
     androidxJunitKtxVersion = '1.1.3'
-    mockitoVerion = '3.2.0'
+    mockkVersion = '1.12.5'
+    mockitoVersion = '4.0.0'
 
     junit = "junit:junit:$junitVersion"
+
     androidJunit = "androidx.test.ext:junit:$androidJunitVersion"
+    androidMock = "io.mockk:mockk-android:$mockkVersion"
     expresso = "androidx.test.espresso:espresso-core:$expressoVersion"
     androidxJunitKtx = "androidx.test.ext:junit-ktx:$androidxJunitKtxVersion"
 
     roomTest = "androidx.room:room-testing:$roomVersion"
 
-//    androidTestImplementation "androidx.compose.ui:ui-test-junit4:$composeVersion"
-//    debugImplementation "androidx.compose.ui:ui-tooling:$composeVersion"
+    mockk = "io.mockk:mockk:$mockkVersion"
+    mockitoKotlin = "org.mockito.kotlin:mockito-kotlin:$mockitoVersion"
 
 }

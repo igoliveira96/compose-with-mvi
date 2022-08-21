@@ -1,18 +1,23 @@
 ext {
     testCommonsDependencies = [
             [configuration: "testImplementation", dependency: "$junit"],
-            [configuration: "testImplementation", dependency: "$androidJunit"],
-            [configuration: "testImplementation", dependency: "$expresso"],
-            [configuration: "implementation", dependency: "$androidxJunitKtx"],
+            [configuration: "testImplementation", dependency: "$mockitoKotlin"],
     ]
 
-    testAppDependencies = testCommonsDependencies
+    androidTestCommonsDependencies = testCommonsDependencies + [
+            [configuration: "implementation", dependency: "$androidxJunitKtx"],
+            [configuration: "androidTestImplementation", dependency: "$androidMock"],
+            [configuration: "testImplementation", dependency: "$androidJunit"],
+            [configuration: "testImplementation", dependency: "$expresso"],
+    ]
+
+    testAppDependencies = androidTestCommonsDependencies
 
     testDomainDependencies = testCommonsDependencies
 
     testDataDependencies = testCommonsDependencies
 
-    testDataLocalDependencies = testDataDependencies + [
+    testDataLocalDependencies = androidTestCommonsDependencies + [
             [configuration: "testImplementation", dependency: "$roomTest"],
     ]
 
