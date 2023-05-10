@@ -9,6 +9,3 @@ To build this project the following libraries were used:
 - Lifecycle
 - Koin
 - Room
-
-#### Organization
-The project is organized...
